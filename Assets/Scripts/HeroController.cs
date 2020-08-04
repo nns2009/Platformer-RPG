@@ -9,6 +9,7 @@ using UnityEngine.InputSystem.Users;
 
 public class HeroController : MonoBehaviour
 {
+    public const string ObjectName = "Hero";
     private const float PressThreshold = 0.5f;
 
     public float Speed;
