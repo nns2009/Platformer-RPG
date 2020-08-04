@@ -1,5 +1,5 @@
 {
-    "name": "Character",
+    "name": "HeroInput",
     "maps": [
         {
             "name": "Land",
@@ -292,7 +292,7 @@
                 {
                     "name": "Joystick",
                     "id": "12fd0b22-dc38-4eba-8876-dfdbc40c8203",
-                    "path": "2DVector",
+                    "path": "2DVector(mode=2)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -343,15 +343,31 @@
                     "action": "Dir",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
+                }
+            ]
+        },
+        {
+            "name": "Mouse",
+            "id": "b612514a-4048-4ec1-a99e-2ad8309b1432",
+            "actions": [
+                {
+                    "name": "MousePosition",
+                    "type": "Value",
+                    "id": "5219e0fa-e93d-40a6-84f8-8b3d10dfe8c2",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
                 {
                     "name": "",
-                    "id": "e2c3c61e-ff8e-4fc9-bcca-b144da59702a",
+                    "id": "5cdba305-43a1-480c-9f68-a0c4213f2f31",
                     "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard and Mouse",
-                    "action": "Dir",
+                    "groups": "",
+                    "action": "MousePosition",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
