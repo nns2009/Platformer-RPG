@@ -305,7 +305,7 @@ public class @HeroInput : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Joystick"",
                     ""id"": ""12fd0b22-dc38-4eba-8876-dfdbc40c8203"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""2DVector(mode=2)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -356,15 +356,31 @@ public class @HeroInput : IInputActionCollection, IDisposable
                     ""action"": ""Dir"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-                },
+                }
+            ]
+        },
+        {
+            ""name"": ""Mouse"",
+            ""id"": ""b612514a-4048-4ec1-a99e-2ad8309b1432"",
+            ""actions"": [
+                {
+                    ""name"": ""MousePosition"",
+                    ""type"": ""Value"",
+                    ""id"": ""5219e0fa-e93d-40a6-84f8-8b3d10dfe8c2"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""e2c3c61e-ff8e-4fc9-bcca-b144da59702a"",
+                    ""id"": ""5cdba305-43a1-480c-9f68-a0c4213f2f31"",
                     ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""Dir"",
+                    ""groups"": """",
+                    ""action"": ""MousePosition"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -408,6 +424,9 @@ public class @HeroInput : IInputActionCollection, IDisposable
         m_Land_Attack = m_Land.FindAction("Attack", throwIfNotFound: true);
         m_Land_Void = m_Land.FindAction("Void", throwIfNotFound: true);
         m_Land_Dash = m_Land.FindAction("Dash", throwIfNotFound: true);
+        // Mouse
+        m_Mouse = asset.FindActionMap("Mouse", throwIfNotFound: true);
+        m_Mouse_MousePosition = m_Mouse.FindAction("MousePosition", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -518,6 +537,39 @@ public class @HeroInput : IInputActionCollection, IDisposable
         }
     }
     public LandActions @Land => new LandActions(this);
+
+    // Mouse
+    private readonly InputActionMap m_Mouse;
+    private IMouseActions m_MouseActionsCallbackInterface;
+    private readonly InputAction m_Mouse_MousePosition;
+    public struct MouseActions
+    {
+        private @HeroInput m_Wrapper;
+        public MouseActions(@HeroInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @MousePosition => m_Wrapper.m_Mouse_MousePosition;
+        public InputActionMap Get() { return m_Wrapper.m_Mouse; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MouseActions set) { return set.Get(); }
+        public void SetCallbacks(IMouseActions instance)
+        {
+            if (m_Wrapper.m_MouseActionsCallbackInterface != null)
+            {
+                @MousePosition.started -= m_Wrapper.m_MouseActionsCallbackInterface.OnMousePosition;
+                @MousePosition.performed -= m_Wrapper.m_MouseActionsCallbackInterface.OnMousePosition;
+                @MousePosition.canceled -= m_Wrapper.m_MouseActionsCallbackInterface.OnMousePosition;
+            }
+            m_Wrapper.m_MouseActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @MousePosition.started += instance.OnMousePosition;
+                @MousePosition.performed += instance.OnMousePosition;
+                @MousePosition.canceled += instance.OnMousePosition;
+            }
+        }
+    }
+    public MouseActions @Mouse => new MouseActions(this);
     private int m_KeyboardandMouseSchemeIndex = -1;
     public InputControlScheme KeyboardandMouseScheme
     {
@@ -543,5 +595,9 @@ public class @HeroInput : IInputActionCollection, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnVoid(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+    }
+    public interface IMouseActions
+    {
+        void OnMousePosition(InputAction.CallbackContext context);
     }
 }
