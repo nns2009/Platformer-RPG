@@ -26,4 +26,14 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        var damageable = other.GetComponent<Damageable>();
+        if (damageable != null)
+        {
+            damageable.ReceiveDamage(Damage);
+        }
+        Destroy(gameObject);
+    }
 }
