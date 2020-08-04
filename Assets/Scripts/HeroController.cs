@@ -9,15 +9,23 @@ using UnityEngine.InputSystem.Users;
 
 public class HeroController : MonoBehaviour
 {
-    public float Speed;
+    private const float PressThreshold = 0.5f;
 
-    public Transform weaponHolder;
+    public float Speed;
+    public float AttackRechargeTime;
+
     public Transform body;
+    public Transform weaponHolder;
+    public Transform weaponTip;
+
+    public GameObject projectilePrefab;
 
     private HeroInput input;
     public PlayerInput playerInput;
     public Camera mainCamera;
     public CinemachineVirtualCamera virtualCamera;
+
+    private float attackRechargeTimeLeft = 0;
 
     void Awake()
     {
@@ -78,5 +86,15 @@ public class HeroController : MonoBehaviour
             weaponHolder.rotation = Quaternion.Euler(0, (hero2camAngle + front2dirAngle) * Mathf.Rad2Deg, 0);
         }
 
+        float attackInp = input.Land.Attack.ReadValue<float>();
+        if (attackInp > PressThreshold && attackRechargeTimeLeft <= 0)
+        {
+            var projectileObject = Instantiate(projectilePrefab, weaponTip.position, weaponTip.rotation);
+            var projectile = projectileObject.GetComponent<Projectile>();
+            projectile.Set(weaponTip.forward);
+            attackRechargeTimeLeft = AttackRechargeTime;
+        }
+
+        attackRechargeTimeLeft = Mathf.Max(0, attackRechargeTimeLeft - Time.deltaTime);
     }
 }
