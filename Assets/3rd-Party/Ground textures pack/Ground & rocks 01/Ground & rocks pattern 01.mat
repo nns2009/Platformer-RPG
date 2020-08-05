@@ -127,7 +127,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _AORemapMax: 1
-    - _AORemapMin: 0.9616343
+    - _AORemapMin: 1
     - _ATDistance: 1
     - _AddPrecomputedVelocity: 0
     - _AlbedoAffectEmissive: 0
@@ -206,8 +206,8 @@ Material:
     - _SSRefractionProjectionModel: 0
     - _Shininess: 0.07858093
     - _Smoothness: 0.5
-    - _SmoothnessRemapMax: 0.1145989
-    - _SmoothnessRemapMin: 0.06477329
+    - _SmoothnessRemapMax: 0.12954658
+    - _SmoothnessRemapMin: 0.079720974
     - _SpecularAAScreenSpaceVariance: 0.1
     - _SpecularAAThreshold: 0.2
     - _SpecularOcclusionMode: 1
