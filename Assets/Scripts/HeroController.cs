@@ -14,6 +14,15 @@ public class HeroController : MonoBehaviour
 
     public float Speed;
     public float AttackRechargeTime;
+    private float attackRechargeTimeLeft = 0;
+
+    public float DashRechargeTime;
+    public float DashDistance;
+    public float DashDuration;
+    private bool lastDashPressed = false;
+    private float dashLastTimestamp = -100;
+    private float dashTimeRemaining;
+    private Vector3 dashDirection;
 
     public Transform body;
     public Transform weaponHolder;
@@ -21,12 +30,13 @@ public class HeroController : MonoBehaviour
 
     public GameObject projectilePrefab;
 
+    private Rigidbody rb;
+
     private HeroInput input;
     public PlayerInput playerInput;
     public Camera mainCamera;
     public CinemachineVirtualCamera virtualCamera;
 
-    private float attackRechargeTimeLeft = 0;
 
     void Awake()
     {
@@ -40,10 +50,9 @@ public class HeroController : MonoBehaviour
     {
         input.Disable();
     }
-
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -53,12 +62,23 @@ public class HeroController : MonoBehaviour
         var hero2camAngle = Mathf.Atan2(hero2cam.x, hero2cam.z);
         //Debug.Log(mainCamera.transform.position + " : " + virtualCamera.transform.position + " : " + hero2camAngle);
 
+        bool isDashing = Time.time - dashLastTimestamp <= DashDuration;
         var movInp = input.Land.Move.ReadValue<Vector2>();
         var movDirection =
             Quaternion.AngleAxis(hero2camAngle * Mathf.Rad2Deg, Vector3.up) *
             new Vector3(movInp.x, 0, movInp.y);
-        var posDelta = movDirection * Speed * Time.deltaTime;
-        transform.Translate(posDelta.x, 0, posDelta.z, Space.World);
+
+        if (isDashing)
+        {
+            var dashSpeed = DashDistance / DashDuration;
+            var posDelta = dashDirection * dashSpeed * Time.deltaTime;
+            transform.Translate(posDelta, Space.World);
+        }
+        else
+        {
+            var posDelta = movDirection * Speed * Time.deltaTime;
+            transform.Translate(posDelta.DropY(), Space.World);
+        }
 
         Vector2 dirInp;
 
@@ -95,6 +115,14 @@ public class HeroController : MonoBehaviour
             projectile.Set(weaponTip.forward);
             attackRechargeTimeLeft = AttackRechargeTime;
         }
+
+        bool dashPressed = input.Land.Dash.ReadValue<float>() >= PressThreshold;
+        if (!lastDashPressed && dashPressed && Time.time - dashLastTimestamp >= DashRechargeTime)
+        {
+            dashLastTimestamp = Time.time;
+            dashDirection = weaponTip.forward.DropY().normalized;
+        }
+        lastDashPressed = dashPressed;
 
         attackRechargeTimeLeft = Mathf.Max(0, attackRechargeTimeLeft - Time.deltaTime);
     }
