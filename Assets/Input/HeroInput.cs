@@ -271,6 +271,17 @@ public class @HeroInput : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""a7e75e7e-7e0b-476f-9077-5abf8b3194a7"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""afb0b4d6-3e6e-4fe4-9d96-4d0244ddb3bb"",
                     ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
