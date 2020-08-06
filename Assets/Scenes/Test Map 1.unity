@@ -3112,14 +3112,6 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 8393276700157867805, guid: 267c4daaa9f76d444bab31c53e1cce10, type: 3}
-      propertyPath: ShadowPrefab
-      value: 
-      objectReference: {fileID: 2793533777783927764, guid: 3095097c1afbcec4688a469a0bf0c055, type: 3}
-    - target: {fileID: 8393276700157867805, guid: 267c4daaa9f76d444bab31c53e1cce10, type: 3}
-      propertyPath: ShadowCastTime
-      value: 0.4
-      objectReference: {fileID: 0}
     - target: {fileID: 8393276700157867806, guid: 267c4daaa9f76d444bab31c53e1cce10, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
