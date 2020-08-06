@@ -1,9 +1,34 @@
 fileFormatVersion: 2
-guid: c95c2073511c0f441be18c6223e9543f
+guid: 006fca648baef824081096907c637d0a
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cave
+    second: {fileID: 2100000, guid: fba561f4f572ac143bc5325e12c34684, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CaveArch
+    second: {fileID: 2100000, guid: 0d81d8fb93135684c927e5ea9edbf398, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rocks 2
+    second: {fileID: 2100000, guid: bf2937bc30e54d1408bcc8b873d11e3d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rocas
+    second: {fileID: 2100000, guid: edf92a695b2a4d248ba6cda1b5fd9801, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wood
+    second: {fileID: 2100000, guid: 6b95ac6d73a598c4b93259af5b2dd76a, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
