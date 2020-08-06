@@ -14,19 +14,38 @@ public class HeroController : MonoBehaviour
 
     public float Speed;
     public float AttackRechargeTime;
+    private float attackRechargeTimeLeft = 0;
 
+    [Space]
+    public float DashRechargeTime;
+    public float DashDistance;
+    public float DashDuration;
+    private bool lastDashPressed = false;
+    private float dashLastTimestamp = -100;
+    private float dashTimeRemaining;
+    private Vector3 dashDirection;
+
+    [Space]
+    public GameObject ShadowPrefab;
+    public float ShadowCastTime;
+    private GameObject shadow;
+    private float shadowLastPressedTime = -100;
+    private bool lastShadowPressed = false;
+    private bool shadowPressUnused = false;
+
+    [Space]
     public Transform body;
     public Transform weaponHolder;
     public Transform weaponTip;
-
     public GameObject projectilePrefab;
 
-    private HeroInput input;
+    [Space]
     public PlayerInput playerInput;
     public Camera mainCamera;
     public CinemachineVirtualCamera virtualCamera;
+    private HeroInput input;
 
-    private float attackRechargeTimeLeft = 0;
+    private Rigidbody rb;
 
     void Awake()
     {
@@ -40,10 +59,9 @@ public class HeroController : MonoBehaviour
     {
         input.Disable();
     }
-
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -53,12 +71,23 @@ public class HeroController : MonoBehaviour
         var hero2camAngle = Mathf.Atan2(hero2cam.x, hero2cam.z);
         //Debug.Log(mainCamera.transform.position + " : " + virtualCamera.transform.position + " : " + hero2camAngle);
 
+        bool isDashing = Time.time - dashLastTimestamp <= DashDuration;
         var movInp = input.Land.Move.ReadValue<Vector2>();
         var movDirection =
             Quaternion.AngleAxis(hero2camAngle * Mathf.Rad2Deg, Vector3.up) *
             new Vector3(movInp.x, 0, movInp.y);
-        var posDelta = movDirection * Speed * Time.deltaTime;
-        transform.Translate(posDelta.x, 0, posDelta.z, Space.World);
+
+        if (isDashing)
+        {
+            var dashSpeed = DashDistance / DashDuration;
+            var posDelta = dashDirection * dashSpeed * Time.deltaTime;
+            transform.Translate(posDelta, Space.World);
+        }
+        else
+        {
+            var posDelta = movDirection * Speed * Time.deltaTime;
+            transform.Translate(posDelta.DropY(), Space.World);
+        }
 
         Vector2 dirInp;
 
@@ -95,6 +124,46 @@ public class HeroController : MonoBehaviour
             projectile.Set(weaponTip.forward);
             attackRechargeTimeLeft = AttackRechargeTime;
         }
+
+        bool dashPressed = input.Land.Dash.ReadValue<float>() >= PressThreshold;
+        if (!lastDashPressed && dashPressed && Time.time - dashLastTimestamp >= DashRechargeTime)
+        {
+            dashLastTimestamp = Time.time;
+            dashDirection = weaponTip.forward.DropY().normalized;
+        }
+        lastDashPressed = dashPressed;
+
+        bool shadowPressed = input.Land.Shadow.ReadValue<float>() >= PressThreshold;
+        if (!lastShadowPressed && shadowPressed)
+        {
+            shadowPressUnused = true;
+            shadowLastPressedTime = Time.time;
+        }
+        else if (shadowPressed && shadowPressUnused && Time.time - shadowLastPressedTime >= ShadowCastTime)
+        {
+            // Cast shadow
+            shadowPressUnused = false;
+            if (shadow != null)
+            {
+                Destroy(shadow);
+                shadow = null;
+            }
+            shadow = Instantiate(ShadowPrefab, body.position, body.rotation);
+        }
+        else if (lastShadowPressed && !shadowPressed && shadowPressUnused)
+        {
+            // Teleport to shadow
+            if (shadow != null)
+            {
+                transform.position = shadow.transform.position;
+                transform.rotation = shadow.transform.rotation;
+                // TODO: (maybe?) fix the rotation of the weapon ?
+
+                Destroy(shadow);
+                shadow = null;
+            }
+        }
+        lastShadowPressed = shadowPressed;
 
         attackRechargeTimeLeft = Mathf.Max(0, attackRechargeTimeLeft - Time.deltaTime);
     }

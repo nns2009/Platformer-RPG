@@ -417,6 +417,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 5.4
   AttackRechargeTime: 0.45
+  DashRechargeTime: 0.7
+  DashDistance: 8.59
+  DashDuration: 0.25
   body: {fileID: 1000147828424771153}
   weaponHolder: {fileID: 1000147828446453978}
   weaponTip: {fileID: 1000147828980870909}
@@ -437,7 +440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 1bcdcceda5c2c7445bbf69fd42442266, type: 3}
-  m_NotificationBehavior: 3
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -469,6 +472,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: c6653f1c-6877-4a77-bbd8-7c81a5e83d62
     m_ActionName: Land/Dash[/Keyboard/e,/XInputControllerWindows/rightShoulder]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5219e0fa-e93d-40a6-84f8-8b3d10dfe8c2
+    m_ActionName: Mouse/MousePosition[/Mouse/position]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Land

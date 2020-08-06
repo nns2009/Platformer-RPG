@@ -57,6 +57,14 @@ public class @HeroInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Shadow"",
+                    ""type"": ""Button"",
+                    ""id"": ""6c6ec6ba-c0df-4005-9017-144e3e7fc24a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -249,6 +257,17 @@ public class @HeroInput : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""4f4ba3f0-d974-48b7-946a-d88d8ce1930e"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Void"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""5b47c8cb-e521-40ec-8672-a77ecbc49146"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
@@ -271,12 +290,12 @@ public class @HeroInput : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""afb0b4d6-3e6e-4fe4-9d96-4d0244ddb3bb"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""id"": ""a7e75e7e-7e0b-476f-9077-5abf8b3194a7"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Attack"",
+                    ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -287,6 +306,17 @@ public class @HeroInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""afb0b4d6-3e6e-4fe4-9d96-4d0244ddb3bb"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -356,6 +386,39 @@ public class @HeroInput : IInputActionCollection, IDisposable
                     ""action"": ""Dir"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7a613fae-623f-4ba4-a316-367410854e5c"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Shadow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6e85e6b5-4550-447d-af9c-9fe23638caaa"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Shadow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c1652779-2959-4baf-83a8-cc74f12437dd"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Shadow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -424,6 +487,7 @@ public class @HeroInput : IInputActionCollection, IDisposable
         m_Land_Attack = m_Land.FindAction("Attack", throwIfNotFound: true);
         m_Land_Void = m_Land.FindAction("Void", throwIfNotFound: true);
         m_Land_Dash = m_Land.FindAction("Dash", throwIfNotFound: true);
+        m_Land_Shadow = m_Land.FindAction("Shadow", throwIfNotFound: true);
         // Mouse
         m_Mouse = asset.FindActionMap("Mouse", throwIfNotFound: true);
         m_Mouse_MousePosition = m_Mouse.FindAction("MousePosition", throwIfNotFound: true);
@@ -481,6 +545,7 @@ public class @HeroInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Land_Attack;
     private readonly InputAction m_Land_Void;
     private readonly InputAction m_Land_Dash;
+    private readonly InputAction m_Land_Shadow;
     public struct LandActions
     {
         private @HeroInput m_Wrapper;
@@ -490,6 +555,7 @@ public class @HeroInput : IInputActionCollection, IDisposable
         public InputAction @Attack => m_Wrapper.m_Land_Attack;
         public InputAction @Void => m_Wrapper.m_Land_Void;
         public InputAction @Dash => m_Wrapper.m_Land_Dash;
+        public InputAction @Shadow => m_Wrapper.m_Land_Shadow;
         public InputActionMap Get() { return m_Wrapper.m_Land; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -514,6 +580,9 @@ public class @HeroInput : IInputActionCollection, IDisposable
                 @Dash.started -= m_Wrapper.m_LandActionsCallbackInterface.OnDash;
                 @Dash.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnDash;
                 @Dash.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnDash;
+                @Shadow.started -= m_Wrapper.m_LandActionsCallbackInterface.OnShadow;
+                @Shadow.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnShadow;
+                @Shadow.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnShadow;
             }
             m_Wrapper.m_LandActionsCallbackInterface = instance;
             if (instance != null)
@@ -533,6 +602,9 @@ public class @HeroInput : IInputActionCollection, IDisposable
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
+                @Shadow.started += instance.OnShadow;
+                @Shadow.performed += instance.OnShadow;
+                @Shadow.canceled += instance.OnShadow;
             }
         }
     }
@@ -595,6 +667,7 @@ public class @HeroInput : IInputActionCollection, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnVoid(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnShadow(InputAction.CallbackContext context);
     }
     public interface IMouseActions
     {
