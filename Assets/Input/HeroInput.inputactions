@@ -44,6 +44,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Shadow",
+                    "type": "Button",
+                    "id": "6c6ec6ba-c0df-4005-9017-144e3e7fc24a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -236,6 +244,17 @@
                 },
                 {
                     "name": "",
+                    "id": "4f4ba3f0-d974-48b7-946a-d88d8ce1930e",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Void",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "5b47c8cb-e521-40ec-8672-a77ecbc49146",
                     "path": "<Keyboard>/e",
                     "interactions": "",
@@ -269,22 +288,22 @@
                 },
                 {
                     "name": "",
-                    "id": "afb0b4d6-3e6e-4fe4-9d96-4d0244ddb3bb",
-                    "path": "<Gamepad>/rightTrigger",
+                    "id": "989f3119-0f90-4cc1-a2b7-d557dd92aa1a",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad",
+                    "groups": "Keyboard and Mouse",
                     "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "989f3119-0f90-4cc1-a2b7-d557dd92aa1a",
-                    "path": "<Mouse>/leftButton",
+                    "id": "afb0b4d6-3e6e-4fe4-9d96-4d0244ddb3bb",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard and Mouse",
+                    "groups": "Gamepad",
                     "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -354,6 +373,39 @@
                     "action": "Dir",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "7a613fae-623f-4ba4-a316-367410854e5c",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Shadow",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6e85e6b5-4550-447d-af9c-9fe23638caaa",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Shadow",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c1652779-2959-4baf-83a8-cc74f12437dd",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Shadow",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
