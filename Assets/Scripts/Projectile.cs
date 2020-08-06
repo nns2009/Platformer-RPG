@@ -29,7 +29,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        var damageable = other.GetComponent<Damageable>();
+        var damageable = other.GetComponentInParent<Damageable>();
         if (damageable != null)
         {
             damageable.ReceiveDamage(Damage);
