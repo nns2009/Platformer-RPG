@@ -420,6 +420,8 @@ MonoBehaviour:
   DashRechargeTime: 0.7
   DashDistance: 8.59
   DashDuration: 0.25
+  ShadowPrefab: {fileID: 2793533777783927764, guid: 3095097c1afbcec4688a469a0bf0c055, type: 3}
+  ShadowCastTime: 0.4
   body: {fileID: 1000147828424771153}
   weaponHolder: {fileID: 1000147828446453978}
   weaponTip: {fileID: 1000147828980870909}
