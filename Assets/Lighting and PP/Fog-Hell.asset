@@ -21,7 +21,7 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 0
   color:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: {r: 0.26415092, g: 0.03613386, b: 0.03613386, a: 1}
     hdr: 1
     showAlpha: 0
@@ -56,7 +56,7 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 50
   albedo:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: {r: 0.4245283, g: 0.16620682, b: 0.16620682, a: 1}
     hdr: 0
     showAlpha: 1
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
-  m_Name: Fog
+  m_Name: Fog-Hell
   m_EditorClassIdentifier: 
   components:
   - {fileID: -3305224281371206947}
