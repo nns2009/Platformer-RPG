@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject ActivatedEffect;
+
+    public void Activate()
     {
-        
+        ActivatedEffect.SetActive(true);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Deactivate()
     {
-        
+        ActivatedEffect.SetActive(false);
     }
 }

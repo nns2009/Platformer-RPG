@@ -45,6 +45,8 @@ public class HeroController : MonoBehaviour
     public CinemachineVirtualCamera virtualCamera;
     private HeroInput input;
 
+    private Checkpoint lastCheckpoint;
+
     private Rigidbody rb;
 
     void Awake()
@@ -167,4 +169,19 @@ public class HeroController : MonoBehaviour
 
         attackRechargeTimeLeft = Mathf.Max(0, attackRechargeTimeLeft - Time.deltaTime);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        var checkpoint = other.GetComponentInParent<Checkpoint>();
+        if (checkpoint != null)
+        {
+            if (lastCheckpoint != null)
+            {
+                lastCheckpoint.Deactivate();
+            }
+            lastCheckpoint = checkpoint;
+            checkpoint.Activate();
+        }
+    }
+
 }
