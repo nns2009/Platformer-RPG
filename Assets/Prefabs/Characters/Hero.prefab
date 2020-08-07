@@ -364,6 +364,7 @@ GameObject:
   - component: {fileID: 1000147829856540492}
   - component: {fileID: 1000147829856540494}
   - component: {fileID: 1000147829856540495}
+  - component: {fileID: 9187356763669969555}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Untagged
@@ -483,3 +484,33 @@ MonoBehaviour:
   m_DefaultActionMap: Land
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &9187356763669969555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000147829856540491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e20d1efe8db3e8140b593e898d27a659, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 9
+  Health: 0
+  AutoDestroy: 0
+  died:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1000147829856540494}
+        m_TargetAssemblyTypeName: HeroController, Assembly-CSharp
+        m_MethodName: RestartAtCheckpoint
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

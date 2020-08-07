@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
+    public Transform RebirthPoint;
     public GameObject ActivatedEffect;
 
     public void Activate()
