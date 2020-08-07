@@ -197,5 +197,11 @@ public class HeroController : MonoBehaviour
         }
         transform.position = lastCheckpoint.RebirthPoint.position;
         damageable.Restore();
+
+        var enemyGroups = FindObjectsOfType<EnemyGroup>();
+        foreach (var group in enemyGroups)
+        {
+            group.CheckpointReset();
+        }
     }
 }
