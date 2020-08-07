@@ -18,10 +18,12 @@ public class EnemyBasic : MonoBehaviour
     public GameObject projectilePrefab;
 
     private Transform player;
+    private Rigidbody rb;
 
     void Start()
     {
         player = GameObject.Find(HeroController.ObjectName).transform;
+        rb = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -29,11 +31,13 @@ public class EnemyBasic : MonoBehaviour
         var toPlayer = player.position - weaponTip.transform.position;
         var toPlayerDir = toPlayer.normalized;
 
-        if (toPlayer.sqrMagnitude <= MaxChaseDistance * MaxChaseDistance &&
+        if (Speed != 0 &&
+            toPlayer.sqrMagnitude <= MaxChaseDistance * MaxChaseDistance &&
             MinChaseDistance * MinChaseDistance <= toPlayer.sqrMagnitude)
         {
-            var posDelta = Speed * Time.deltaTime * toPlayerDir;
-            transform.Translate(posDelta, Space.World);
+            rb.velocity = toPlayerDir * Speed;
+            //var posDelta = Speed * Time.deltaTime * toPlayerDir;
+            //transform.Translate(posDelta, Space.World);
             transform.rotation = Quaternion.LookRotation(toPlayer.DropY());
         }
 

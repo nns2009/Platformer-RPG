@@ -86,13 +86,15 @@ public class HeroController : MonoBehaviour
         if (isDashing)
         {
             var dashSpeed = DashDistance / DashDuration;
-            var posDelta = dashDirection * dashSpeed * Time.deltaTime;
-            transform.Translate(posDelta, Space.World);
+            //var posDelta = dashDirection * dashSpeed * Time.deltaTime;
+            //transform.Translate(posDelta, Space.World);
+            rb.velocity = dashDirection * dashSpeed;
         }
         else
         {
             var posDelta = movDirection * Speed * Time.deltaTime;
-            transform.Translate(posDelta.DropY(), Space.World);
+            //transform.Translate(posDelta.DropY(), Space.World);
+            rb.velocity = movDirection * Speed;
         }
 
         Vector2 dirInp;
