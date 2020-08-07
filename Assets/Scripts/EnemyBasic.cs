@@ -26,7 +26,7 @@ public class EnemyBasic : MonoBehaviour
 
     void Update()
     {
-        var toPlayer = player.position - transform.position;
+        var toPlayer = player.position - weaponTip.transform.position;
         var toPlayerDir = toPlayer.normalized;
 
         if (toPlayer.sqrMagnitude <= MaxChaseDistance * MaxChaseDistance &&

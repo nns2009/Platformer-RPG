@@ -7,6 +7,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
 
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Damageable))]
 public class HeroController : MonoBehaviour
 {
     public const string ObjectName = "Hero";
@@ -48,6 +50,7 @@ public class HeroController : MonoBehaviour
     private Checkpoint lastCheckpoint;
 
     private Rigidbody rb;
+    private Damageable damageable;
 
     void Awake()
     {
@@ -64,6 +67,7 @@ public class HeroController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        damageable = GetComponent<Damageable>();
     }
 
     void Update()
@@ -184,4 +188,14 @@ public class HeroController : MonoBehaviour
         }
     }
 
+    public void RestartAtCheckpoint()
+    {
+        if (lastCheckpoint == null)
+        {
+            Debug.LogWarning("Hero haven't activated any checkpoints yet");
+            return;
+        }
+        transform.position = lastCheckpoint.RebirthPoint.position;
+        damageable.Restore();
+    }
 }
