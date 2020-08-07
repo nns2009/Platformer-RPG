@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8030794889578441150}
   - component: {fileID: 6479034362917403264}
   m_Layer: 0
-  m_Name: Cylinder.010
+  m_Name: Spine.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: fe82826e011f5084ea399c02472b7e04, type: 3}
+  - {fileID: 2100000, guid: 9e16541538f004e31b9724c23d6a6e80, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
