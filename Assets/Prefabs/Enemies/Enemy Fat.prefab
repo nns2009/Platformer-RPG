@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c66cc1307c3fa3240972781fe2ebd9cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 4
+  Speed: 2.9
   MinChaseDistance: 5
   AttackDistance: 9
   MaxChaseDistance: 24
@@ -111,8 +111,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e20d1efe8db3e8140b593e898d27a659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 3
+  MaxHealth: 10
   Health: 0
+  AutoDestroy: 1
+  died:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &9153842580432278469
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,8 +144,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9153842580432278469}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5759999, z: 0}
-  m_LocalScale: {x: 1.6572106, y: 0.9755896, z: 1.6572106}
+  m_LocalPosition: {x: 0, y: 3.23, z: 0}
+  m_LocalScale: {x: 3.0250292, y: 1.7808161, z: 3.0250292}
   m_Children:
   - {fileID: 8616123137453246161}
   m_Father: {fileID: 8708635307703883150}
@@ -207,9 +211,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.60864943
-  m_Height: 2.6127777
+  m_Height: 3.219276
   m_Direction: 1
-  m_Center: {x: 0, y: -0.17360929, z: 0}
+  m_Center: {x: 0, y: -0.24338196, z: 0}
 --- !u!1001 &8077248995620135226
 PrefabInstance:
   m_ObjectHideFlags: 0
