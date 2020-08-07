@@ -31,14 +31,26 @@ public class EnemyBasic : MonoBehaviour
         var toPlayer = player.position - weaponTip.transform.position;
         var toPlayerDir = toPlayer.normalized;
 
-        if (Speed != 0 &&
-            toPlayer.sqrMagnitude <= MaxChaseDistance * MaxChaseDistance &&
-            MinChaseDistance * MinChaseDistance <= toPlayer.sqrMagnitude)
+        bool closeEnough = toPlayer.sqrMagnitude <= MaxChaseDistance * MaxChaseDistance;
+        bool notTooClose = MinChaseDistance * MinChaseDistance <= toPlayer.sqrMagnitude;
+
+        if (closeEnough)
         {
-            rb.velocity = toPlayerDir * Speed;
-            //var posDelta = Speed * Time.deltaTime * toPlayerDir;
-            //transform.Translate(posDelta, Space.World);
             transform.rotation = Quaternion.LookRotation(toPlayer.DropY());
+        }
+
+        if (Speed != 0)
+        {
+            if (closeEnough && notTooClose)
+            {
+                rb.velocity = toPlayerDir * Speed;
+                //var posDelta = Speed * Time.deltaTime * toPlayerDir;
+                //transform.Translate(posDelta, Space.World);
+            }
+            else
+            {
+                rb.velocity = new Vector3(0, rb.velocity.y, 0);
+            }
         }
 
         attackRechargeTimeLeft = Mathf.Max(0, attackRechargeTimeLeft - Time.deltaTime);
