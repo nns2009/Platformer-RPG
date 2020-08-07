@@ -1,44 +1,9 @@
 fileFormatVersion: 2
-guid: 2b9dff19db578944f975879706fed489
+guid: 6de9fcb5543d6bc429be63910ea123ba
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Blue
-    second: {fileID: 2100000, guid: f6a06b2bc2404914aac5198e6497161a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Light
-    second: {fileID: 2100000, guid: 8e3f3b482a79f474da74c958e8a09285, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material
-    second: {fileID: 2100000, guid: e25d374b5a5e3c243ab7f823557851f7, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.001
-    second: {fileID: 2100000, guid: 43b65a14a0618f04285a9f902192c5df, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.002
-    second: {fileID: 2100000, guid: be5cd277ac8d3fd47b9215e9631da4ec, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: No Name
-    second: {fileID: 2100000, guid: 9ed890df4570f4544a85a9fbe4885c26, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Tree
-    second: {fileID: 2100000, guid: 8ab471906e4e4f549801911fd9e156a5, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 1
     materialName: 0
