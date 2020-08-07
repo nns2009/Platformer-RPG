@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2903086458404226749}
   - component: {fileID: 1055460127387532912}
   m_Layer: 0
-  m_Name: Cube.006
+  m_Name: Skull
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,9 +59,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 3027191208319864836, guid: fe82826e011f5084ea399c02472b7e04, type: 3}
-  - {fileID: -5334228907447980685, guid: fe82826e011f5084ea399c02472b7e04, type: 3}
-  - {fileID: 2504516506940294678, guid: fe82826e011f5084ea399c02472b7e04, type: 3}
+  - {fileID: 2100000, guid: 9e16541538f004e31b9724c23d6a6e80, type: 2}
+  - {fileID: 2100000, guid: 9e16541538f004e31b9724c23d6a6e80, type: 2}
+  - {fileID: 2100000, guid: 9e16541538f004e31b9724c23d6a6e80, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

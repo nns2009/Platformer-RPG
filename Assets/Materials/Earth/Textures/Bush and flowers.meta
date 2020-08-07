@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Materials/Earth/Textures/Bush and flowers.meta
 guid: b48b9b96fb24da8479eb585490ef9d14
+=======
+guid: 1c225d19df81247aebf8277a1af16fe3
+>>>>>>> 83662680b0a263fd983f2c6563a9d4ea8bd3df24:Assets/3rd-Party/Bone Weapon.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

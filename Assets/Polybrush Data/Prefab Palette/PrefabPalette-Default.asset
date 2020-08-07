@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc38003c0e0db6641a4762d4f392de52, type: 3}
   m_Name: PrefabPalette-Default
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   prefabs:
   - gameObject: {fileID: 5074076293894081370, guid: 4f5d2014255353744a509071f15678f6, type: 3}
     settings:
@@ -221,3 +222,6 @@ MonoBehaviour:
       m_YScaleBool: 0
       m_ZScaleBool: 0
     name: Bush1 1
+=======
+  prefabs: []
+>>>>>>> 83662680b0a263fd983f2c6563a9d4ea8bd3df24
