@@ -83,19 +83,21 @@ public class HeroController : MonoBehaviour
             Quaternion.AngleAxis(hero2camAngle * Mathf.Rad2Deg, Vector3.up) *
             new Vector3(movInp.x, 0, movInp.y);
 
+        Vector3 planeMoveVelocity;
         if (isDashing)
         {
             var dashSpeed = DashDistance / DashDuration;
             //var posDelta = dashDirection * dashSpeed * Time.deltaTime;
             //transform.Translate(posDelta, Space.World);
-            rb.velocity = dashDirection * dashSpeed;
+            planeMoveVelocity = dashDirection * dashSpeed;
         }
         else
         {
             var posDelta = movDirection * Speed * Time.deltaTime;
             //transform.Translate(posDelta.DropY(), Space.World);
-            rb.velocity = movDirection * Speed;
+            planeMoveVelocity = movDirection * Speed;
         }
+        rb.velocity = new Vector3(planeMoveVelocity.x, rb.velocity.y, planeMoveVelocity.z);
 
         Vector2 dirInp;
 

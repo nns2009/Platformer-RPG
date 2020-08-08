@@ -43,7 +43,8 @@ public class EnemyBasic : MonoBehaviour
         {
             if (closeEnough && notTooClose)
             {
-                rb.velocity = toPlayerDir * Speed;
+                var planeMoveVelocity = toPlayerDir * Speed;
+                rb.velocity = new Vector3(planeMoveVelocity.x, rb.velocity.y, planeMoveVelocity.z);
                 //var posDelta = Speed * Time.deltaTime * toPlayerDir;
                 //transform.Translate(posDelta, Space.World);
             }
