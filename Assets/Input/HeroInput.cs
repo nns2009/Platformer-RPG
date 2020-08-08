@@ -65,6 +65,14 @@ public class @HeroInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Restart"",
+                    ""type"": ""Button"",
+                    ""id"": ""a39202a7-76e0-405e-91d6-142635a8da43"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -419,6 +427,28 @@ public class @HeroInput : IInputActionCollection, IDisposable
                     ""action"": ""Shadow"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7e7fb6e9-a377-4874-950f-3ac23490fdf1"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Restart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d20708e7-f079-489b-88e6-5b01f588c00e"",
+                    ""path"": ""<Keyboard>/u"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Restart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -488,6 +518,7 @@ public class @HeroInput : IInputActionCollection, IDisposable
         m_Land_Void = m_Land.FindAction("Void", throwIfNotFound: true);
         m_Land_Dash = m_Land.FindAction("Dash", throwIfNotFound: true);
         m_Land_Shadow = m_Land.FindAction("Shadow", throwIfNotFound: true);
+        m_Land_Restart = m_Land.FindAction("Restart", throwIfNotFound: true);
         // Mouse
         m_Mouse = asset.FindActionMap("Mouse", throwIfNotFound: true);
         m_Mouse_MousePosition = m_Mouse.FindAction("MousePosition", throwIfNotFound: true);
@@ -546,6 +577,7 @@ public class @HeroInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Land_Void;
     private readonly InputAction m_Land_Dash;
     private readonly InputAction m_Land_Shadow;
+    private readonly InputAction m_Land_Restart;
     public struct LandActions
     {
         private @HeroInput m_Wrapper;
@@ -556,6 +588,7 @@ public class @HeroInput : IInputActionCollection, IDisposable
         public InputAction @Void => m_Wrapper.m_Land_Void;
         public InputAction @Dash => m_Wrapper.m_Land_Dash;
         public InputAction @Shadow => m_Wrapper.m_Land_Shadow;
+        public InputAction @Restart => m_Wrapper.m_Land_Restart;
         public InputActionMap Get() { return m_Wrapper.m_Land; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -583,6 +616,9 @@ public class @HeroInput : IInputActionCollection, IDisposable
                 @Shadow.started -= m_Wrapper.m_LandActionsCallbackInterface.OnShadow;
                 @Shadow.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnShadow;
                 @Shadow.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnShadow;
+                @Restart.started -= m_Wrapper.m_LandActionsCallbackInterface.OnRestart;
+                @Restart.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnRestart;
+                @Restart.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnRestart;
             }
             m_Wrapper.m_LandActionsCallbackInterface = instance;
             if (instance != null)
@@ -605,6 +641,9 @@ public class @HeroInput : IInputActionCollection, IDisposable
                 @Shadow.started += instance.OnShadow;
                 @Shadow.performed += instance.OnShadow;
                 @Shadow.canceled += instance.OnShadow;
+                @Restart.started += instance.OnRestart;
+                @Restart.performed += instance.OnRestart;
+                @Restart.canceled += instance.OnRestart;
             }
         }
     }
@@ -668,6 +707,7 @@ public class @HeroInput : IInputActionCollection, IDisposable
         void OnVoid(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnShadow(InputAction.CallbackContext context);
+        void OnRestart(InputAction.CallbackContext context);
     }
     public interface IMouseActions
     {
