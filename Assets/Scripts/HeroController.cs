@@ -2,7 +2,6 @@
 using Cinemachine.Utility;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
@@ -47,7 +46,7 @@ public class HeroController : MonoBehaviour
     public CinemachineVirtualCamera virtualCamera;
     private HeroInput input;
 
-    private Checkpoint lastCheckpoint;
+    public Checkpoint lastCheckpoint;
 
     private Rigidbody rb;
     private Damageable damageable;
@@ -68,6 +67,9 @@ public class HeroController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         damageable = GetComponent<Damageable>();
+
+        TeleportToCheckpoint();
+        lastCheckpoint.Activate();
     }
 
     void Update()
@@ -199,7 +201,7 @@ public class HeroController : MonoBehaviour
             Debug.LogWarning("Hero haven't activated any checkpoints yet");
             return;
         }
-        transform.position = lastCheckpoint.RebirthPoint.position;
+        TeleportToCheckpoint();
         damageable.Restore();
 
         var enemyGroups = FindObjectsOfType<EnemyGroup>();
@@ -207,5 +209,10 @@ public class HeroController : MonoBehaviour
         {
             group.CheckpointReset();
         }
+    }
+
+    public void TeleportToCheckpoint()
+    {
+        transform.position = lastCheckpoint.RebirthPoint.position;
     }
 }
